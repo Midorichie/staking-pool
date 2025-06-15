@@ -1,8 +1,51 @@
 [project]
 name = "staking-pool"
 clarity_version = "2.1.0"
-description = "Basic STX staking pool contract"
-authors = ["Mido <hamsohood@gmail.com>"]
+description = "Enhanced STX staking pool with governance and security features"
+authors = ["Your Name <your.email@example.com>"]
+requirements = []
 
+[project.cache]
+epoch = 2.1
+boot_contracts = ["staking-pool", "governance"]
+
+# Main staking pool contract
 [contracts.staking-pool]
 path = "contracts/staking-pool.clar"
+depends_on = []
+
+# Governance contract for decentralized parameter control
+[contracts.governance]
+path = "contracts/governance.clar"
+depends_on = ["staking-pool"]
+
+# Test configurations
+[repl]
+costs_version = 3
+parser_version = 2
+
+[repl.analysis]
+max_depth = 100
+max_expr_depth = 50
+passes = ["check_checker"]
+
+# Network configurations
+[networks]
+mainnet = {}
+testnet = {}
+
+# Development settings
+[development]
+deployment_fee_rate = 10
+include_boot_contracts = ["costs-v3", "pox-4"]
+
+# Deployment plan for testnet
+[[deployment.plan]]
+network = "testnet"
+name = "staking-pool"
+type = "contract"
+
+[[deployment.plan]]
+network = "testnet"
+name = "governance"
+type = "contract"
