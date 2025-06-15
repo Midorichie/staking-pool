@@ -1,0 +1,8 @@
+[project]
+name = "staking-pool"
+clarity_version = "2.1.0"
+description = "Basic STX staking pool contract"
+authors = ["Mido <hamsohood@gmail.com>"]
+
+[contracts.staking-pool]
+path = "contracts/staking-pool.clar"
